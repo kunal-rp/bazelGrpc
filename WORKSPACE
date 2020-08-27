@@ -15,7 +15,7 @@ http_archive(
     ],
 )
 
-# "New" Java support - use to define proto_library -> java proto library 
+# "New" Java support - use to define proto_library -> java proto library
 http_archive(
     name = "rules_java",
     sha256 = "220b87d8cfabd22d1c6d8e3cdb4249abd4c93dcc152e0667db061fb1b957ee68",
@@ -27,7 +27,6 @@ rules_java_dependencies()
 rules_java_toolchains()
 
 # Protocol buffers compiler -> used to define proto_library
-
 http_archive(
     name = "rules_proto",
     sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
@@ -60,3 +59,123 @@ git_repository(
 
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 protobuf_deps()
+
+# grpc 
+http_archive(
+    name = "rules_proto_grpc",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/1.0.2.tar.gz"],
+    sha256 = "5f0f2fc0199810c65a2de148a52ba0aff14d631d4e8202f41aff6a9d590a471b",
+    strip_prefix = "rules_proto_grpc-1.0.2",
+)
+
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
+rules_proto_grpc_toolchains()
+rules_proto_grpc_repos()
+
+load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
+
+rules_proto_grpc_java_repos()
+
+load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
+
+grpc_java_repositories(
+    omit_bazel_skylib = True,
+    omit_com_google_protobuf = True,
+    omit_com_google_protobuf_javalite = True,
+    omit_net_zlib = True,
+)
+
+# maven_install
+
+RULES_JVM_EXTERNAL_TAG = "3.3"
+RULES_JVM_EXTERNAL_SHA = "d85951a92c0908c80bd8551002d66cb23c3434409c814179c0ff026b53544dab"
+
+http_archive(
+    name = "rules_jvm_external",
+    strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
+    sha256 = RULES_JVM_EXTERNAL_SHA,
+    url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" % RULES_JVM_EXTERNAL_TAG,
+)
+
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+
+grpc_version = "1.22.1"
+maven_install(
+    name = "maven",
+    artifacts = [
+        "io.grpc:grpc-testing:%s" % grpc_version
+    ],
+    repositories = [
+        "https://jcenter.bintray.com/",
+        "https://repo1.maven.org/maven2",
+    ],
+)
+
+## General rules
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+## rules_docker
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "dc97fccceacd4c6be14e800b2a00693d5e8d07f69ee187babfd04a80a9f8e250",
+    strip_prefix = "rules_docker-0.14.1",
+    urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.14.1/rules_docker-v0.14.1.tar.gz"],
+)
+
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load("@io_bazel_rules_docker//repositories:deps.bzl", container_deps = "deps")
+
+container_deps()
+
+load("@io_bazel_rules_docker//container:pull.bzl", "container_pull")
+
+container_pull(
+    name = "alpine_linux_amd64",
+    registry = "index.docker.io",
+    repository = "library/alpine",
+    tag = "3.8",
+)
+
+## rules_go
+http_archive(
+    name = "io_bazel_rules_go",
+    sha256 = "142dd33e38b563605f0d20e89d9ef9eda0fc3cb539a14be1bdb1350de2eda659",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.22.2/rules_go-v0.22.2.tar.gz",
+    ],
+)
+
+## rules_docker
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "dc97fccceacd4c6be14e800b2a00693d5e8d07f69ee187babfd04a80a9f8e250",
+    strip_prefix = "rules_docker-0.14.1",
+    urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.14.1/rules_docker-v0.14.1.tar.gz"],
+)
+
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load("@io_bazel_rules_docker//repositories:deps.bzl", container_deps = "deps")
+
+container_deps()
+
+load("@io_bazel_rules_docker//container:pull.bzl", "container_pull")
+
+container_pull(
+    name = "alpine_linux_amd64",
+    registry = "index.docker.io",
+    repository = "library/alpine",
+    tag = "3.8",
+)
