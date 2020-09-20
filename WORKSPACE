@@ -133,6 +133,7 @@ load("@io_bazel_rules_docker//repositories:deps.bzl", container_deps = "deps")
 
 container_deps()
 
+# Load java_image rules to create java docker images to run grpc services
 load(
     "@io_bazel_rules_docker//java:image.bzl",
     _java_image_repos = "repositories",
