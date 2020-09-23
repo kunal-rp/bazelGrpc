@@ -38,5 +38,6 @@ container_push(
    image = ":pollservice_image",
    format = "Docker",
    registry = "534378753229.dkr.ecr.us-east-2.amazonaws.com",
-   repository = "bazeldemo/bazelgrpc-poll-service",
+   repository = "bazeldemo",
+   tag = "dev"
 )

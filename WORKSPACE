@@ -140,3 +140,18 @@ load(
 )
 
 _java_image_repos()
+
+# Load the macro that allows you to customize the docker toolchain configuration.
+load("@io_bazel_rules_docker//toolchains/docker:toolchain.bzl",
+    docker_toolchain_configure="toolchain_configure"
+)
+
+docker_toolchain_configure(
+  name = "docker_config",
+# abosolute path to credentials directory 
+  client_config="${ROOT}/credentials",
+  docker_flags = [
+    "--tls",
+    "--log-level=error",
+  ],
+)
