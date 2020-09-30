@@ -15,6 +15,7 @@ public class PollService {
         pollServer.start();
         System.out.println("Poll Server Started!");
         System.out.println("Make call w/ client");
+        System.out.println("Make call w/ client2");
         pollServer.awaitTermination();
     }
 }
