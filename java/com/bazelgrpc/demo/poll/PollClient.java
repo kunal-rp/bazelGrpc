@@ -10,7 +10,7 @@ public class PollClient extends PollManagementGrpc.PollManagementImplBase {
     public static void main(String[] args){
 
         PollManagementGrpc.PollManagementBlockingStub blockingStub = PollManagementGrpc.newBlockingStub(
-                ManagedChannelBuilder.forAddress("localhost", 8080).usePlaintext().build());
+                ManagedChannelBuilder.forAddress("3.138.33.245", 31479).usePlaintext().build());
 
         GetPollResponse response = blockingStub.getPolls(GetPollRequest.getDefaultInstance());
         System.out.println(response);

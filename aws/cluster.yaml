@@ -1,0 +1,29 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: grpcBazel-EKC-Demo1
+  region: us-east-2
+
+vpc:
+  id: vpc-09e364871895c292e
+  cidr: "192.168.0.0/16"
+  subnets:
+    public:
+      us-east-2a:
+        id: subnet-01be775befc9e443b
+      us-east-2b:
+        id: subnet-004a86411fa299ae6
+    private:
+      us-east-2a:
+        id: subnet-0aaa46d77876d1e80
+      us-east-2b:
+        id: subnet-0168405495deef827
+
+nodeGroups:
+  - name: EKS-public-workers
+    instanceType: t2.medium
+    desiredCapacity: 2
+  - name: EKS-private-workers
+    instanceType: t2.medium
+    desiredCapacity: 1
+    privateNetworking: true
