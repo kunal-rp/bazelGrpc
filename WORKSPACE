@@ -99,11 +99,14 @@ http_archive(
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 
+#guice
+#grpc testing
 grpc_version = "1.22.1"
 maven_install(
     name = "maven",
     artifacts = [
-        "io.grpc:grpc-testing:%s" % grpc_version
+        "io.grpc:grpc-testing:%s" % grpc_version,
+        "com.google.guava:guava:27.0-jre",
     ],
     repositories = [
         "https://jcenter.bintray.com/",
