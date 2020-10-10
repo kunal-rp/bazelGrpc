@@ -9,6 +9,7 @@ java_image(
      srcs = ["PollService.java"],
      deps = [
         "//java/com/bazelgrpc/demo/poll:poll-service-impl",
+        "//java/com/bazelgrpc/demo/util:setup-util",
         "@io_grpc_grpc_java//api",
         "@maven//:com_google_guava_guava",
      ],

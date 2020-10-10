@@ -18,7 +18,7 @@ public class SetupUtil {
     // Assumes that all services will be setup here
     private static ImmutableMap<String, ServiceUri> SERVICE_TO_URI = 
         new ImmutableMap.Builder<String, ServiceUri>()
-        .put("poll",ServiceUri.newBuilder().setServiceDnsUri("poll-service").setPort(8080).build())
+        .put("poll",ServiceUri.newBuilder().setServiceDnsUri("poll-service").setPort(8081).build())
         .build();
 
 
@@ -27,9 +27,12 @@ public class SetupUtil {
         return System.getenv().containsKey(ECR_REG_KEY);
     }
 
-    
     public static String getTarget(String service){
         ServiceUri serviceUri = SERVICE_TO_URI.get(service);
         return (isProdEnv() ? serviceUri.getServiceDnsUri() : "localhost:"+serviceUri.getPort() );
+    }
+
+    public static int getPort(String service){
+        return SERVICE_TO_URI.get(service).getPort();
     }
 }

@@ -3,13 +3,14 @@ package com.bazelgrpc.demo.services;
 import com.bazelgrpc.demo.poll.PollManagementImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import com.bazelgrpc.demo.util.SetupUtil;
 
 
 public class PollService {
 
     public static void main(String[] args) throws Exception {
 
-        Server pollServer = ServerBuilder.forPort(8080)
+        Server pollServer = ServerBuilder.forPort(SetupUtil.getPort("poll"))
                 .addService(new PollManagementImpl())
                 .build();
         pollServer.start();
