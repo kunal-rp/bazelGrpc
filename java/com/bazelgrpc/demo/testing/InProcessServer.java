@@ -4,16 +4,17 @@ import io.grpc.Server;
 import io.grpc.inprocess.InProcessServerBuilder;
 
 import java.io.IOException;
-//import java.util.logging.Logger;
-//import servers.util.PortServer;
+// import java.util.logging.Logger;
+// import servers.util.PortServer;
 
 /**
- * InProcessServer that manages startup/shutdown of a service within the same process as the client is running. Used for unit testing purposes.
+ * InProcessServer that manages startup/shutdown of a service within the same process as the client
+ * is running. Used for unit testing purposes.
  *
  * @author be
  */
 public class InProcessServer<T extends io.grpc.BindableService> {
-    //private static final Logger logger = Logger.getLogger(PortServer.class.getName());
+    // private static final Logger logger = Logger.getLogger(PortServer.class.getName());
 
     private Server server;
 
@@ -24,13 +25,9 @@ public class InProcessServer<T extends io.grpc.BindableService> {
     }
 
     public void start() throws IOException, InstantiationException, IllegalAccessException {
-        server = InProcessServerBuilder
-                .forName("test")
-                .directExecutor()
-                .addService(clazz.newInstance())
-                .build()
-                .start();
-        //logger.info("InProcessServer started.");
+        server = InProcessServerBuilder.forName("test").directExecutor()
+                .addService(clazz.newInstance()).build().start();
+        // logger.info("InProcessServer started.");
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {

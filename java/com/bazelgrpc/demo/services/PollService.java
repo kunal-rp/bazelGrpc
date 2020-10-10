@@ -9,9 +9,8 @@ public class PollService {
 
     public static void main(String[] args) throws Exception {
 
-        Server pollServer = ServerBuilder.forPort(8080)
-                .addService(new PollManagementImpl())
-                .build();
+        Server pollServer =
+                ServerBuilder.forPort(8080).addService(new PollManagementImpl()).build();
         pollServer.start();
         System.out.println("Poll Server Started!");
         System.out.println("Make call w/ client");

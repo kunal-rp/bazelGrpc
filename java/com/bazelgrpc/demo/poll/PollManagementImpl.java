@@ -7,12 +7,13 @@ import com.bazelgrpc.demo.PollServiceProto.GetPollResponse;
 
 public class PollManagementImpl extends PollManagementGrpc.PollManagementImplBase {
 
-    @Override
-    public void getPolls(GetPollRequest req, StreamObserver<GetPollResponse> responseObserver) {
-        System.out.println("I just got a request !");
-      responseObserver.onNext(GetPollResponse.newBuilder().addPolls(PollUtil.createTestingPoll()).build());
-      responseObserver.onCompleted();
-    }
+  @Override
+  public void getPolls(GetPollRequest req, StreamObserver<GetPollResponse> responseObserver) {
+    System.out.println("I just got a request !");
+    responseObserver
+        .onNext(GetPollResponse.newBuilder().addPolls(PollUtil.createTestingPoll()).build());
+    responseObserver.onCompleted();
+  }
 
 }
 
