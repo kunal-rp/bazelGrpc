@@ -13,9 +13,7 @@ public class PollService {
                 .addService(new PollManagementImpl())
                 .build();
         pollServer.start();
-        System.out.println("Poll Server Started!");
-        System.out.println("Make call w/ client");
-        System.out.println("Make call w/ client2");
+        System.out.println("Poll Server Started1!");
         pollServer.awaitTermination();
     }
 }

@@ -4,22 +4,13 @@ load("@io_bazel_rules_docker//java:image.bzl", "java_image")
 
 package(default_visibility = ["//visibility:public"])
 
-
-java_binary(
-    name = "PollService",
-     srcs = ["PollService.java"],
-     deps = [
-            "//java/com/bazelgrpc/demo/poll:poll-service-impl",
-            "@io_grpc_grpc_java//api"
-         ],
-)
-
 java_image(
     name = "java_pollservice_image",
      srcs = ["PollService.java"],
      deps = [
         "//java/com/bazelgrpc/demo/poll:poll-service-impl",
-        "@io_grpc_grpc_java//api"
+        "@io_grpc_grpc_java//api",
+        "@maven//:com_google_guava_guava",
      ],
     main_class = "com.bazelgrpc.demo.services.PollService",
 )
@@ -38,6 +29,6 @@ container_push(
    image = ":pollservice_image",
    format = "Docker",
    registry = "534378753229.dkr.ecr.us-east-2.amazonaws.com",
-   repository = "bazeldemo",
+   repository = "poll-bazeldemo",
    tag = "dev"
 )

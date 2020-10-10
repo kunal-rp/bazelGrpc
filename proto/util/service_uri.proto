@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package poll;
+
+option java_package = "com.bazelgrpc.demo.util";
+option java_outer_classname = "ServiceUriProto";
+
+message ServiceUri{
+    string service_dns_uri = 1;
+    int32 port = 2;
+}

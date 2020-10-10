@@ -27,5 +27,6 @@ java_binary(
     srcs = ["PollClient.java"],
     deps = [
         "//proto:poll_service_java_proto",
+        "//java/com/bazelgrpc/demo/util:setup-util"
     ],
 )
