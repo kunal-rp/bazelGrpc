@@ -7,8 +7,8 @@ java_unit_test(
     pkg="com.bazelgrpc.demo.poll",
     srcs = glob(["*.java"]),
     deps = [
-        "//proto:poll_service_java_proto",
-        "//proto:poll_java_proto",
+        "//proto/poll:poll_service_java_proto",
+        "//proto/poll:poll_java_proto",
     	"//java/com/bazelgrpc/demo/poll:poll-util",
     	"//java/com/bazelgrpc/demo/poll:poll-service-impl",
     	"@io_grpc_grpc_java//api",
