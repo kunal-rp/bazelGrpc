@@ -9,7 +9,7 @@ public class PollManagementImpl extends PollManagementGrpc.PollManagementImplBas
 
   @Override
   public void getPolls(GetPollRequest req, StreamObserver<GetPollResponse> responseObserver) {
-    System.out.println("I just got a request !");
+    System.out.println("getPolls");
     responseObserver
         .onNext(GetPollResponse.newBuilder().addPolls(PollUtil.createTestingPoll()).build());
     responseObserver.onCompleted();
