@@ -8,11 +8,11 @@ import com.bazelgrpc.demo.poll.PollServiceProto.GetPollResponse;
 
 public class PollClient {
 
-    public static void main(String[] args) {
+    public GetPollResponse callGetPoll() {
         PollManagementGrpc.PollManagementBlockingStub blockingStub =
                 PollManagementGrpc.newBlockingStub(ManagedChannelBuilder
                         .forTarget(SetupUtil.getTarget("poll")).usePlaintext().build());
-        GetPollResponse response = blockingStub.getPolls(GetPollRequest.getDefaultInstance());
+        return blockingStub.getPolls(GetPollRequest.getDefaultInstance());
     }
 }
 

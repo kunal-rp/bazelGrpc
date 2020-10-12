@@ -22,11 +22,29 @@ java_library(
     ],
 )
 
-java_binary(
-    name = "PollClient",
+java_library(
+    name = "poll-client",
     srcs = ["PollClient.java"],
     deps = [
-        "//proto/poll:poll_service_java_proto",
+       "//proto/poll:poll_service_java_proto",
         "//java/com/bazelgrpc/demo/util:setup-util"
+    ],
+)
+
+java_library(
+    name = "poll-handler",
+    srcs = glob(["*Handler.java"]),
+    deps = [
+        "//proto/poll:poll_java_proto",
+        ":poll-client",
+         "@maven//:com_google_inject_guice",
+    ],
+)
+
+java_binary(
+    name = "RunPollClient",
+    srcs = ["RunPollClient.java"],
+    deps = [
+        ":poll-client"
     ],
 )
