@@ -16,8 +16,12 @@ public class SetupUtil {
 
     // Assumes that all services will be setup here
     private static ImmutableMap<String, ServiceUri> SERVICE_TO_URI =
-            new ImmutableMap.Builder<String, ServiceUri>().put("poll",
-                    ServiceUri.newBuilder().setServiceDnsUri("poll-service").setPort(8081).build())
+            new ImmutableMap.Builder<String, ServiceUri>()
+                    .put("action",
+                            ServiceUri.newBuilder().setServiceDnsUri("action-bazelgrpc")
+                                    .setPort(8081).build())
+                    .put("poll", ServiceUri.newBuilder().setServiceDnsUri("poll-bazelgrpc")
+                            .setPort(8082).build())
                     .build();
 
 
@@ -28,6 +32,10 @@ public class SetupUtil {
 
     public static String getTarget(String service) {
         ServiceUri serviceUri = SERVICE_TO_URI.get(service);
+        System.out.println("gettarget");
+        System.out.println(service);
+        System.out.println((isProdEnv() ? serviceUri.getServiceDnsUri()
+                : "localhost:" + serviceUri.getPort()));
         return (isProdEnv() ? serviceUri.getServiceDnsUri() : "localhost:" + serviceUri.getPort());
     }
 

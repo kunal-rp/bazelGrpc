@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poll-bazelgrpc
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: poll-bazelgrpc
+  template:
+    metadata:
+      labels:
+        app: poll-bazelgrpc
+    spec:
+      containers:
+        - name: poll-bazelgrpc
+          image: image: 534378753229.dkr.ecr.us-east-2.amazonaws.com/poll-bazeldemo:dev
+          env:
+            - name: ECR_REG_URI
+              value: "some ecr reg uri"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082

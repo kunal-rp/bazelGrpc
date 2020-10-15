@@ -13,7 +13,7 @@ public class PollService {
         Server pollServer = ServerBuilder.forPort(SetupUtil.getPort("poll"))
                 .addService(new PollManagementImpl()).build();
         pollServer.start();
-        System.out.println("Poll Server Started1!");
+        System.out.println("BGRPC Poll Server Started!");
         pollServer.awaitTermination();
     }
 }

@@ -11,3 +11,22 @@ java_library(
         "@maven//:com_google_inject_guice",
     ],
 )
+
+java_library(
+    name = "poll-client",
+    srcs = ["PollClient.java"],
+    deps = [
+       "//proto/poll:poll_service_java_proto",
+        "//java/com/bazelgrpc/demo/util:setup-util"
+    ],
+)
+
+
+java_binary(
+    name = "ActionClient",
+    srcs = ["ActionClient.java"],
+    deps = [
+        "//proto/action:action_service_java_proto",
+        "//java/com/bazelgrpc/demo/util:setup-util"
+    ],
+)
