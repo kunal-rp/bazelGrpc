@@ -10,7 +10,7 @@ public class PollService {
 
     public static void main(String[] args) throws Exception {
 
-        Server pollServer = ServerBuilder.forPort(SetupUtil.getPort("poll"))
+        Server pollServer = ServerBuilder.forPort(SetupUtil.DEFAULT_SERVICE_PORT)
                 .addService(new PollManagementImpl()).build();
         pollServer.start();
         System.out.println("BGRPC Poll Server Started!");

@@ -1,23 +1,23 @@
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 metadata:
-  name: grpcBazel-EKC-Demo1
+  name: bazel-grpc-6
   region: us-east-2
 
 vpc:
-  id: vpc-09e364871895c292e
+  id: vpc-0316c42d31b2fcd4f
   cidr: "192.168.0.0/16"
   subnets:
     public:
       us-east-2a:
-        id: subnet-01be775befc9e443b
+        id: subnet-0ad6bdcdf03065afd
       us-east-2b:
-        id: subnet-004a86411fa299ae6
+        id: subnet-0c414fc0042f04cdc
     private:
       us-east-2a:
-        id: subnet-0aaa46d77876d1e80
+        id: subnet-07a705f6f373a0ad8
       us-east-2b:
-        id: subnet-0168405495deef827
+        id: subnet-00316536baa7cbe10
 
 nodeGroups:
   - name: EKS-public-workers

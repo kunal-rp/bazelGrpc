@@ -14,10 +14,10 @@ public class ActionService {
 
         Injector injector = Guice.createInjector(new ServiceModule());
 
-        Server pollServer = ServerBuilder.forPort(SetupUtil.getPort("action"))
+        Server pollServer = ServerBuilder.forPort(SetupUtil.DEFAULT_SERVICE_PORT)
                 .addService(injector.getInstance(ActionManagementImpl.class)).build();
         pollServer.start();
-        System.out.println("BGRPC Action Server Started!GET READY");
+        System.out.println("BGRPC Action Server Started!");
         pollServer.awaitTermination();
     }
 }

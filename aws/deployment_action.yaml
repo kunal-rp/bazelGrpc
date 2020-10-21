@@ -15,10 +15,6 @@ spec:
     spec:
       containers:
         - name: action-bazelgrpc
-          image: krpdkr/bazelgrpc-action-service:2.0
-          env:
-            - name: ECR_REG_URI
-              value: "some ecr reg uri"
-          imagePullPolicy: IfNotPresent
+          image: 534378753229.dkr.ecr.us-east-2.amazonaws.com/action-bazeldemo:dev
           ports:
-            - containerPort: 8081
+            - containerPort: 80

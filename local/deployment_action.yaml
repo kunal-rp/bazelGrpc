@@ -17,8 +17,8 @@ spec:
         - name: action-bazelgrpc
           image: bazel/java/com/bazelgrpc/demo/services:actionservice_image
           env:
-            - name: ECR_REG_URI
-              value: "some ecr reg uri"
+            - name: POll_BAZELGRPC
+              value: "poll-bazelgrpc"
           imagePullPolicy: Never
           ports:
-            - containerPort: 8081
+            - containerPort: 80

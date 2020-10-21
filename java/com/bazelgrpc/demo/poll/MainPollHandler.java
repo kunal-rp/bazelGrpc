@@ -7,9 +7,10 @@ import com.google.inject.Singleton;
 @Singleton
 public class MainPollHandler implements PollHandler {
 
+    private PollClient client = new PollClient();
+
     @Override
     public List<Poll> getPolls() {
-        PollClient client = new PollClient();
         return client.callGetPoll().getPollsList();
     }
 

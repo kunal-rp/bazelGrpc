@@ -1,4 +1,4 @@
-load("@rules_java//java:defs.bzl","java_library")
+load("@rules_java//java:defs.bzl", "java_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -10,5 +10,5 @@ java_library(
     srcs = ["SetupUtil.java"],
     deps = [
         "@maven//:com_google_guava_guava",
-        "//proto/util:service_uri_java_proto"]
+    ],
 )

@@ -11,7 +11,7 @@ public class AnnotatePostClient {
     public static void main(String[] args) {
         AnnotateManagementGrpc.AnnotateManagementBlockingStub blockingStub =
                 AnnotateManagementGrpc.newBlockingStub(ManagedChannelBuilder
-                        .forTarget(SetupUtil.getTarget("annotate")).usePlaintext().build());
+                        .forTarget("some dummy value for now ").usePlaintext().build());
         GetAnnotatePostResponse response =
                 blockingStub.getAnnotatePost(GetAnnotatePostRequest.getDefaultInstance());
     }

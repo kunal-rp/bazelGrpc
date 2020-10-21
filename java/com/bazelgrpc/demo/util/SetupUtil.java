@@ -1,8 +1,8 @@
 package com.bazelgrpc.demo.util;
 
+import java.security.Provider.Service;
 import java.util.Optional;
 import com.google.common.collect.ImmutableMap;
-import com.bazelgrpc.demo.util.ServiceUriProto.ServiceUri;
 
 /**
  * 
@@ -12,34 +12,18 @@ import com.bazelgrpc.demo.util.ServiceUriProto.ServiceUri;
 
 public class SetupUtil {
 
-    private static String ECR_REG_KEY = "ECR_REG_URI";
+    public static int DEFAULT_SERVICE_PORT = 80;
 
-    // Assumes that all services will be setup here
-    private static ImmutableMap<String, ServiceUri> SERVICE_TO_URI =
-            new ImmutableMap.Builder<String, ServiceUri>()
-                    .put("action",
-                            ServiceUri.newBuilder().setServiceDnsUri("action-bazelgrpc")
-                                    .setPort(8081).build())
-                    .put("poll", ServiceUri.newBuilder().setServiceDnsUri("poll-bazelgrpc")
-                            .setPort(8082).build())
-                    .build();
-
-
-    // assumes that only k8s cluster would have ECR REG env variable set up, locally no
-    public static boolean isProdEnv() {
-        return System.getenv().containsKey(ECR_REG_KEY);
+    // All availabe services
+    public enum AvailableServices {
+        POLL_BAZELGRPC
     }
 
-    public static String getTarget(String service) {
-        ServiceUri serviceUri = SERVICE_TO_URI.get(service);
-        System.out.println("gettarget");
-        System.out.println(service);
-        System.out.println((isProdEnv() ? serviceUri.getServiceDnsUri()
-                : "localhost:" + serviceUri.getPort()));
-        return (isProdEnv() ? serviceUri.getServiceDnsUri() : "localhost:" + serviceUri.getPort());
-    }
-
-    public static int getPort(String service) {
-        return SERVICE_TO_URI.get(service).getPort();
+    public static String getTarget(AvailableServices service) {
+        switch (service) {
+            case POLL_BAZELGRPC:
+                return "poll-bazelgrpc";
+        }
+        return "someurl";
     }
 }
