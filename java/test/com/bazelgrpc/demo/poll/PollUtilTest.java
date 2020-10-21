@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.junit.Before;
-import com.bazelgrpc.demo.PollProto.Poll;
+import com.bazelgrpc.demo.poll.PollProto.Poll;
 import com.bazelgrpc.demo.poll.PollUtil;
 
 /**

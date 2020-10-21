@@ -8,9 +8,9 @@ import org.junit.Rule;
 import io.grpc.ManagedChannel;
 import io.grpc.testing.GrpcServerRule;
 import com.bazelgrpc.demo.poll.PollManagementImpl;
-import com.bazelgrpc.demo.PollManagementGrpc;
-import com.bazelgrpc.demo.PollServiceProto.GetPollRequest;
-import com.bazelgrpc.demo.PollServiceProto.GetPollResponse;
+import com.bazelgrpc.demo.poll.PollManagementGrpc;
+import com.bazelgrpc.demo.poll.PollServiceProto.GetPollRequest;
+import com.bazelgrpc.demo.poll.PollServiceProto.GetPollResponse;
 
 /**
  * Poll Testing

@@ -1,9 +1,9 @@
 package com.bazelgrpc.demo.poll;
 
-import com.bazelgrpc.demo.PollProto.Poll;
-import com.bazelgrpc.demo.PollProto.PollQuestion;
-import com.bazelgrpc.demo.PollProto.RadioSelection;
-import com.bazelgrpc.demo.PollProto.RadioOption;
+import com.bazelgrpc.demo.poll.PollProto.Poll;
+import com.bazelgrpc.demo.poll.PollProto.PollQuestion;
+import com.bazelgrpc.demo.poll.PollProto.RadioSelection;
+import com.bazelgrpc.demo.poll.PollProto.RadioOption;
 
 import java.io.IOException;
 

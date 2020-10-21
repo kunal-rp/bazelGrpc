@@ -1,2 +1,0 @@
-Build options: --repository_cache='~/.cache/bazel-repo' --disk_cache='~/.cache/bazel-disk' --explain=log.txt
-Executing action 'BazelWorkspaceStatusAction stable-status.txt': unconditional execution is requested.

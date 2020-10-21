@@ -102,11 +102,13 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 #guice
 #grpc testing
 grpc_version = "1.22.1"
+guice_version = "4.1.0"
 maven_install(
     name = "maven",
     artifacts = [
         "io.grpc:grpc-testing:%s" % grpc_version,
         "com.google.guava:guava:27.0-jre",
+        'com.google.inject:guice:' + guice_version,
     ],
     repositories = [
         "https://jcenter.bintray.com/",

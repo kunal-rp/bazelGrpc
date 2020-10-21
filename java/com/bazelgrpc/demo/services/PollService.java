@@ -3,18 +3,17 @@ package com.bazelgrpc.demo.services;
 import com.bazelgrpc.demo.poll.PollManagementImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import com.bazelgrpc.demo.util.SetupUtil;
 
 
 public class PollService {
 
-    public static void main(String[] args) throws Exception {
+        public static void main(String[] args) throws Exception {
 
-        Server pollServer =
-                ServerBuilder.forPort(8080).addService(new PollManagementImpl()).build();
-        pollServer.start();
-        System.out.println("Poll Server Started!");
-        System.out.println("Make call w/ client");
-        System.out.println("Make call w/ client2");
-        pollServer.awaitTermination();
-    }
+                Server pollServer = ServerBuilder.forPort(SetupUtil.DEFAULT_SERVICE_PORT)
+                                .addService(new PollManagementImpl()).build();
+                pollServer.start();
+                System.out.println("BGRPC Poll Server Started!");
+                pollServer.awaitTermination();
+        }
 }
