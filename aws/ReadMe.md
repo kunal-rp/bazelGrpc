@@ -11,4 +11,8 @@ Here are the general steps for creating/setup for k8s cluster:
     -specify public/private subnets(IP's in VPC) for cluster
 2.  Create K8s Cluster on said cloud
     -note that two services are needed; one to expose the poll service internally, and another to expose the action externally
-3.  Be sure to expose the port for the public workers that matches nodeport exposed
+3.  Be sure to expose the port for the public workers that matches nodeport exposeds
+    - should only need to modify the public subnet inboud rules & add the new port
+
+Running specific pods on specific nodes:
+So we are running
