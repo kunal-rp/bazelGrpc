@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: action-bazelgrpc
-  namespace: default
+  namespace: bazelgrpc
 spec:
   replicas: 1
   selector:
@@ -16,9 +16,6 @@ spec:
       containers:
         - name: action-bazelgrpc
           image: bazel/java/com/bazelgrpc/demo/services:actionservice_image
-          env:
-            - name: POll_BAZELGRPC
-              value: "poll-bazelgrpc"
           imagePullPolicy: Never
           ports:
             - containerPort: 80

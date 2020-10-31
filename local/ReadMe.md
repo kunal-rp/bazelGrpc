@@ -2,11 +2,15 @@ The best way to test all of this will be to run minikube node locally and apply 
 
 1. Start minikube
    -minikube start
-2. Clear old/Start new deployments
-   -kubecbl apply -f DEPLOYMENT.YAML's
-3. start services
-4. port forwarding for action pod on exposed port
-   -this is to simulate calling the cluster for the external(from cluster pods) ip
+2. Create new images locally
+3. Clear old/Start new deployments and services
+   -kubecbl apply -f local/
+4. Start up ingress add on with minikube
+   - 'minikube addons enable ingress'
+5. Apply ingress file
+6. Modify '/ect/hosts' to route traffic from minikube ip address to specified host name in ingress resource
+7. Run local client
+   -should be its own java binary i.e.-ActionClient
 
 After editing the new images:
 
