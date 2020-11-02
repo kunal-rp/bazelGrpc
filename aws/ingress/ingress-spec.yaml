@@ -9,17 +9,12 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip # Add this annotation
     alb.ingress.kubernetes.io/security-groups: sg-07a590c0607305fe5
     alb.ingress.kubernetes.io/load-balancer-attributes: "routing.http2.enabled=true"
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS":443}]' alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:ap-southeast-1:1234567891011:certificate/some-UID"
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS":443}]' 
+    alb.ingress.kubernetes.io/certificate-arn: '	arn:aws:acm:us-east-2:534378753229:certificate/560e7027-6525-4595-b275-650c293cab59'
 spec:
 spec:
   rules:
     - http:
-        paths:
-          - path: /
-            backend:
-              serviceName: action-bazelgrpc
-              servicePort: 80
-    - https:
         paths:
           - path: /
             backend:

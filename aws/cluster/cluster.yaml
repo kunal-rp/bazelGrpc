@@ -1,7 +1,7 @@
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 metadata:
-  name: bazel-grpc-6
+  name: bg-7-cluster
   region: us-east-2
 
 vpc:

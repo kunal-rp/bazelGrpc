@@ -16,3 +16,5 @@ Here are the general steps for creating/setup for k8s cluster:
 
 Running specific pods on specific nodes:
 So we are running
+
+Ingress and ALB(https://aws.amazon.com/premiumsupport/knowledge-center/eks-alb-ingress-controller-setup)
