@@ -1,4 +1,7 @@
-workspace(name = "demo_proto_and_java")
+workspace(name = "demo_proto_and_java" ,
+    # Map the @npm bazel workspace to the node_modules directory.
+    # This lets Bazel use the same node_modules as other local tooling.
+    managed_directories = {"@nodejs_modules": ["node_modules"]})
 
 # functions to get external libs
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive","http_jar")
@@ -64,9 +67,6 @@ maven_install(
     ],
 )
 
-## General rules
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
 ## rules_docker
 http_archive(
     name = "io_bazel_rules_docker",
@@ -103,3 +103,25 @@ docker_toolchain_configure(
     "--log-level=error",
   ],
 )
+
+
+#nodejs - already installed from proto grpc 
+load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
+rules_proto_grpc_nodejs_repos()
+
+# The npm_install rule runs yarn anytime the package.json or package-lock.json file changes.
+# It also extracts any Bazel rules distributed in an npm package.
+load("@build_bazel_rules_nodejs//:index.bzl", "npm_install","yarn_install")
+npm_install(
+    # Name this npm so that Bazel Label references look like @npm//package
+    name = "nodejs_modules",
+    package_json = "//nodejs:package.json",
+    package_lock_json = "//nodejs:package-lock.json",
+)
+
+# Load nodejs_image rules to create java docker images to run grpc services
+load(
+    "@io_bazel_rules_docker//nodejs:image.bzl",
+    _nodejs_image_repos = "repositories",
+)
+_nodejs_image_repos()

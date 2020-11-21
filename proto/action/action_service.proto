@@ -8,6 +8,7 @@ option java_outer_classname = "ActionServiceProto";
 import 'proto/annotate/annotate.proto';
 import 'proto/poll/poll.proto';
 
+//TODOD : renambe to ActionService
 service ActionManagement {
   rpc initializePage(InitializePageRequest) returns (InitializePageResponse);
 }
