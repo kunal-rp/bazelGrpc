@@ -4,10 +4,9 @@ metadata:
   name: action-bazelgrpc
   namespace: bazelgrpc
 spec:
-  type: NodePort
   selector:
     app: action-bazelgrpc
   ports:
-    - nodePort: 32767
-      port: 8080
+    - protocol: "TCP"
+      port: 80
       targetPort: 80

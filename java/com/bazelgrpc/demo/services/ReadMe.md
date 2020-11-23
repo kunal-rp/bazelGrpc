@@ -15,7 +15,7 @@ Pushing the Container Image to ECR:
 1. ensure that you are logged in
 
 - aws configure
-- authenticate registry locally : https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-cli.html
+- authenticate registry locally : https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-cli.html ( only have to run get-login-password command )
 
 2. build target w/ container push will push to repo specified w/ run command
 

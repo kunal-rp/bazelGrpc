@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
         - name: gateway-bazelgrpc
-          image: bazel/nodejs:gateway_image 
+          image: 534378753229.dkr.ecr.us-east-2.amazonaws.com/gateway-bazeldemo:dev
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
