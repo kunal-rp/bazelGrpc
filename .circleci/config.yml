@@ -1,12 +1,12 @@
-version: 2.1
- jobs:
+jobs:
   build:
     steps:
       - checkout
-      - run: bazel build //...
- workflows:
-   version: 2
-   build: 
-     jobs:
-       - build
-
+      - bazelisk-orb/install
+orbs:
+  jq: promiseofcake/bazelisk-orb@0.2
+version: 2.1
+workflows:
+  your-workflow:
+    jobs:
+      - build
