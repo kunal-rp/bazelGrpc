@@ -8,6 +8,7 @@ jobs:
       - image: circleci/buildpack-deps
     steps:
       - checkout
+      - run: sudo apt-get update 
       - run: sudo apt-get install gcc
       - run: printenv
       - run: ls /usr/bin/
