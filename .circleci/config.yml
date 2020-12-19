@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - run: sudo apt-get update 
-      - run: sudo apt-get install gcc
+      - run: sudo apt-get install gcc g++
       - run: printenv
       - run: ls /usr/bin/
       - bazelisk-orb/install
