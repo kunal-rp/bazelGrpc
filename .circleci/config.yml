@@ -11,7 +11,7 @@ jobs:
       - run: java -version
       - bazelisk-orb/install
       - run: /home/circleci/.local/bin/bazel --version
-      - run: /home/circleci/.local/bin/bazel build //...
+      - run: /home/circleci/.local/bin/bazel build --verbose_failures //...
 workflows:
   version: 2
   build: # this is the name of our workflow
