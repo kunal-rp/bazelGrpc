@@ -1,10 +1,13 @@
 version: 2.1
+orbs:
+  bazelisk-orb: promiseofcake/bazelisk-orb@0.3.0
 jobs:
   test:
     docker: # run the steps with Docker
       - image: circleci/node:10.15.0
     steps:
       - checkout
+      - bazelisk-orb/install
       - run: bazel build //...
 workflows:
   version: 2
