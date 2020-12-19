@@ -8,7 +8,8 @@ jobs:
     steps:
       - checkout
       - bazelisk-orb/install
-      - run: bazelisk build //...
+      - run: bazel --version
+      - run: bazel build //...
 workflows:
   version: 2
   build: # this is the name of our workflow
