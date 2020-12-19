@@ -9,8 +9,8 @@ jobs:
     steps:
       - checkout
       - run: printenv
+      - run: which java
       - bazelisk-orb/install
-      - run: printenv
       - run: /home/circleci/.local/bin/bazel build --verbose_failures //...
 workflows:
   version: 2
