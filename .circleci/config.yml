@@ -1,13 +1,13 @@
-version: 2
- jobs:
+version: 2.1
+jobs:
   test:
     docker: # run the steps with Docker
       - image: circleci/node:10.15.0
     steps:
       - checkout
       - run: bazel build //...
- workflows:
-   version: 2
-   build: # this is the name of our workflow
-     jobs: # and here we list the jobs we are going to run.
-       - test
+workflows:
+  version: 2
+  build: # this is the name of our workflow
+    jobs: # and here we list the jobs we are going to run.
+      - test
