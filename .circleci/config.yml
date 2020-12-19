@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - run: printenv
-      - run: ls /user/bin/
+      - run: ls /usr/bin/
       - bazelisk-orb/install
       - run: /home/circleci/.local/bin/bazel build --verbose_failures //...
 workflows:
