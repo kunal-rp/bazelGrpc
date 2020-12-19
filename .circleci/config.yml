@@ -8,8 +8,8 @@ jobs:
     steps:
       - checkout
       - bazelisk-orb/install
-      - run: bazel --version
-      - run: bazel build //...
+      - run: /home/circleci/.local/bin/bazel --version
+      - run: /home/circleci/.local/bin/bazel build //...
 workflows:
   version: 2
   build: # this is the name of our workflow
