@@ -7,7 +7,7 @@ jobs:
       - image: circleci/openjdk:[
     steps:
       - checkout
-      - java -version
+      - run: java -version
       - bazelisk-orb/install
       - run: /home/circleci/.local/bin/bazel --version
       - run: /home/circleci/.local/bin/bazel build //...
