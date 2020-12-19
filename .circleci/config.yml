@@ -12,7 +12,7 @@ jobs:
       - run: printenv
       - run: ls /usr/bin/
       - bazelisk-orb/install
-      - run: /home/circleci/.local/bin/bazel build --verbose_failures //...
+      - run: /home/circleci/.local/bin/bazel build --verbose_failures //nodejs:gateway_server
 workflows:
   version: 2
   build: # this is the name of our workflow
