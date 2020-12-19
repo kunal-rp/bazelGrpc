@@ -8,9 +8,9 @@ jobs:
       - image: conanio/gcc49
     steps:
       - checkout
-      - run: java -version
+      - run: printenv
       - bazelisk-orb/install
-      - run: /home/circleci/.local/bin/bazel --version
+      - run: printenv
       - run: /home/circleci/.local/bin/bazel build --verbose_failures //...
 workflows:
   version: 2
