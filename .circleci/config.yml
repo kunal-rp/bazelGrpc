@@ -5,7 +5,7 @@ jobs:
   test:
     docker: 
       - image: circleci/openjdk:9.0.4-sid
-      - image: conanio/gcc49
+      - image: circleci/buildpack-deps
     steps:
       - checkout
       - run: printenv
