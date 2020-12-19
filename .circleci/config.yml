@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - run: sudo apt-get update 
-      - run: sudo apt-get install gcc g++
+      - run: sudo apt-get install gcc g++ python3.6
       - run: printenv
       - run: ls /usr/bin/
       - bazelisk-orb/install
