@@ -5,7 +5,7 @@ jobs:
   test:
     docker: 
       - image: circleci/openjdk:9.0.4-sid
-      - image: gcc:4.9
+      - image: conanio/gcc49
     steps:
       - checkout
       - run: java -version
