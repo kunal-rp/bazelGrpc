@@ -4,7 +4,7 @@ orbs:
 jobs:
   test:
     docker: # run the steps with Docker
-      - image: circleci/openjdk:[
+      - image: circleci/openjdk:9.0.4-sid
     steps:
       - checkout
       - run: java -version
