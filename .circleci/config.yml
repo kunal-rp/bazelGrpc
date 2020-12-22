@@ -6,11 +6,10 @@ jobs:
     docker: 
       - image: circleci/openjdk:9.0.4-sid
     resource_class: xlarge
-    pre-steps:
+    steps:
       - run: sudo apt-get update 
       - run: sudo apt-get install gcc g++ python3
       - bazelisk-orb/install
-    steps:
       - checkout
       - run: /home/circleci/.local/bin/bazel test //... 
 workflows:
