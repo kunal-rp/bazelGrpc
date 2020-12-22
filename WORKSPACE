@@ -64,6 +64,7 @@ maven_install(
     repositories = [
         "https://jcenter.bintray.com/",
         "https://repo1.maven.org/maven2",
+        "https://maven.google.com",
     ],
 )
 
