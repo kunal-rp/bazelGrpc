@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   bazelisk-orb: promiseofcake/bazelisk-orb@0.3.0
 jobs:
-  test:
+  prepare:
     docker: 
       - image: circleci/openjdk:9.0.4-sid
     resource_class: xlarge
@@ -13,9 +13,24 @@ jobs:
       - run: printenv
       - run: ls /usr/bin/
       - bazelisk-orb/install
-      - run: /home/circleci/.local/bin/bazel build //... 
+  build-and-test: 
+    steps: 
+      - checkout
+      - run: /home/circleci/.local/bin/bazel test //... 
+  push_images: 
+    steps: 
+      - run: ci/get_modified_services
 workflows:
   version: 2
   build: # this is the name of our workflow
     jobs: # and here we list the jobs we are going to run.
-      - test
+      - prepare
+      - build-and-test: 
+        requires: 
+          - prepare 
+      - push_images: 
+        requires: 
+          - build-and-test
+        filters:
+          branches: 
+            only: main
