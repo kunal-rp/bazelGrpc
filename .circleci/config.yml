@@ -14,10 +14,16 @@ jobs:
       - run: ls /usr/bin/
       - bazelisk-orb/install
   build-and-test: 
+    docker: 
+      - image: circleci/openjdk:9.0.4-sid
+    resource_class: medium
     steps: 
       - checkout
       - run: /home/circleci/.local/bin/bazel test //... 
   push_images: 
+    docker: 
+      - image: circleci/openjdk:9.0.4-sid
+    resource_class: medium
     steps: 
       - run: ci/get_modified_services
 workflows:
@@ -25,12 +31,12 @@ workflows:
   build: # this is the name of our workflow
     jobs: # and here we list the jobs we are going to run.
       - prepare
-      - build-and-test: 
-        requires: 
-          - prepare 
-      - push_images: 
-        requires: 
-          - build-and-test
-        filters:
-          branches: 
-            only: main
+      - build-and-test:
+          requires: 
+            - prepare 
+      - push_images:
+          requires:
+            - build-and-test
+          filters:
+            branches: 
+              only: main
