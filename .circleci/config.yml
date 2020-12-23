@@ -16,14 +16,14 @@ jobs:
   build-and-test: 
     docker: 
       - image: circleci/openjdk:9.0.4-sid
-    resource_class: medium
+    resource_class: xlarge
     steps: 
       - checkout
       - run: /home/circleci/.local/bin/bazel test //... 
   push_images: 
     docker: 
       - image: circleci/openjdk:9.0.4-sid
-    resource_class: medium
+    resource_class: xlarge
     steps: 
       - run: ci/get_modified_services
 workflows:
