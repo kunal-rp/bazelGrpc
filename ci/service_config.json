@@ -1,0 +1,18 @@
+{
+ "registry": "534378753229.dkr.ecr.us-east-2.amazonaws.com",
+ "services": {
+  "action": {
+   "tag": 1,
+   "repo": "action-bazeldemo"
+  },
+  "poll": {
+   "tag": 2.5,
+   "repo": "poll-bazeldemo"
+  },
+  "gateway": {
+   "build_flags": [],
+   "tag": 1,
+   "repo": "gateway-bazeldemo"
+  }
+ }
+}
