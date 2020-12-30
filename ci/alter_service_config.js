@@ -25,10 +25,11 @@ if(!SERVICES.includes(SERVICE_NAME)){
 var updateServiceConfig = () =>{
 
     var updateFileContent = (cont) => {
-        var tagLineRegexp = new RegExp(SERVICE_NAME+"_TAG=[0-9]*\.[0-9]*")
+        var tagLineRegexp = new RegExp(SERVICE_NAME+"_TAG=\"[0-9]*\.[0-9]*\"")
         var currentTag = cont.match(tagLineRegexp)[0]
-        var newTagVersion = (parseFloat(currentTag.split('=')[1]) + TAG_DELIM).toFixed(1)
-        var newTagLine = currentTag.split('=')[0] + "=" + newTagVersion
+        var newTagVersion = (parseFloat(currentTag.split('=')[1].slice(1,-1)) + TAG_DELIM).toFixed(1)
+        console.log(currentTag.split('=')[1].slice(1,-1))
+        var newTagLine = currentTag.split('=')[0] + "=\"" + newTagVersion+ "\""
 
         var newServiceConfig = cont.replace(tagLineRegexp, newTagLine)
         fs.writeFileSync('ci/service_configs.bzl', newServiceConfig  , (err, data) => {

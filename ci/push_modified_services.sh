@@ -22,3 +22,5 @@ for target in ${modified_push_targets[*]}; do
    $(bazel run ${target})
    echo "DONE: ${target}" 
 done
+
+#TODO: have shell script to run in build & test to check that there is a mapping of push targets => tags and repo
