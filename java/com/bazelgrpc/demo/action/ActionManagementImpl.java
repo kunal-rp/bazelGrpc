@@ -23,7 +23,7 @@ public class ActionManagementImpl extends ActionManagementGrpc.ActionManagementI
   public void initializePage(InitializePageRequest req,
       StreamObserver<InitializePageResponse> responseObserver) {
     long start = System.currentTimeMillis();
-    System.out.println("initializePage");
+    System.out.println("initializePage1");
 
     InitializePageResponse.Builder response = InitializePageResponse.newBuilder();
     response.addAllPolls(pollHandler.getPolls());

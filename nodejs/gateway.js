@@ -13,7 +13,7 @@ var client = new actionServiceProto.ActionManagementClient("action-bazelgrpc:80"
 
 app.get('/', (req, res) => {
   console.log("generic rest  recieved")
-  res.send('this is the GATEWAY!')
+  res.send('this is the GATEWAY!!')
 })
 
 app.get('/testgrpc', (req, res) => {
