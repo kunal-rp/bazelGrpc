@@ -10,7 +10,6 @@ cd "$(git rev-parse --show-toplevel)"
 # Get a list of the current files in package form by querying Bazel.
 echo "STEP 1: Files -> SRC File Targets"
 for file in $(git diff --name-only ${COMMIT_RANGE} ); do
-    echo ${file}
     if [ ${file} = SERVICE_CONFIG_FILE]; then
         printf "Service Config should not be modified"
         exit 1c

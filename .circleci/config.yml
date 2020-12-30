@@ -15,6 +15,7 @@ jobs:
       - run: ls /usr/bin/
       - bazelisk-orb/install
       - run: /home/circleci/.local/bin/bazel test //... 
+      - run: ci/check_service_config_services.sh
   push_images: 
     docker: 
       - image: circleci/openjdk:9.0.4-sid
@@ -26,10 +27,10 @@ jobs:
       - run: printenv
       - run: ls /usr/bin/
       - bazelisk-orb/install
-      - run: ci/modified_services.sh    
+      - run: ci/push_modified_services.sh    
   authenticate:
-    docker:
-      - image: circle/openjdk:9.0.4-sid
+    machine:
+      image: ubuntu-1604:202007-01
     steps:
       - aws-ecr/ecr-login
 

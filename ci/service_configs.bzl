@@ -1,5 +1,3 @@
-ECR_URI="534378753229.dkr.ecr.us-east-2.amazonaws.com"
-
 ACTION_TAG=1.3
 ACTION_REPO="action-bazeldemo"
 
