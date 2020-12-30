@@ -1,6 +1,7 @@
 load("@rules_java//java:defs.bzl","java_binary")
 load("@io_bazel_rules_docker//container:container.bzl", "container_image","container_push")
 load("@io_bazel_rules_docker//java:image.bzl", "java_image")
+load("//ci:service_configs.bzl", "ACTION_TAG","ACTION_REPO", "POLL_TAG", "POLL_REPO", "ECR_URL")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -20,7 +21,7 @@ java_library(
 # ACTION SERVIE 
 
 java_image(
-    name = "java_actionservice_image",
+    name = "java_action_image",
      srcs = ["ActionService.java"],
      deps = [
         "//java/com/bazelgrpc/demo/action:action-service-impl",
@@ -35,7 +36,7 @@ java_image(
 
 # create container image
 container_image(
-    name = "actionservice_image",
+    name = "action_image",
     base = "java_actionservice_image",
     creation_time = "{BUILD_TIMESTAMP}",
     stamp = True,
@@ -43,19 +44,19 @@ container_image(
 
 
 container_push(
-   name = "push_actionservice_image",
-   image = ":actionservice_image",
+   name = "push_action_image",
+   image = ":action_image",
    format = "Docker",
-   registry = "534378753229.dkr.ecr.us-east-2.amazonaws.com",
-   repository = "action-bazeldemo",
-   tag = "dev"
+   registry = ECR_URL,
+   repository = ACTION_REPO,
+   tag = ACTION_TAG
 )
 
 
 # POLL SERVIE 
 
 java_image(
-    name = "java_pollservice_image",
+    name = "java_poll_image",
      srcs = ["PollService.java"],
      deps = [
         "//java/com/bazelgrpc/demo/poll:poll-service-impl",
@@ -68,18 +69,18 @@ java_image(
 
 # create container image
 container_image(
-    name = "pollservice_image",
-    base = "java_pollservice_image",
+    name = "poll_image",
+    base = "java_poll_image",
     creation_time = "{BUILD_TIMESTAMP}",
     stamp = True,
 )
 
 
 container_push(
-   name = "push_pollservice_image",
-   image = ":pollservice_image",
+   name = "push_poll_image",
+   image = ":poll_image",
    format = "Docker",
-   registry = "534378753229.dkr.ecr.us-east-2.amazonaws.com",
-   repository = "poll-bazeldemo",
-   tag = "dev"
+   registry = ECR_URL,
+   repository = POLL_REPO,
+   tag = POLL_TAG
 )
