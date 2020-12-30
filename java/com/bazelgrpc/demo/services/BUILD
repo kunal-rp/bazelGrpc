@@ -37,7 +37,7 @@ java_image(
 # create container image
 container_image(
     name = "action_image",
-    base = "java_actionservice_image",
+    base = "java_action_image",
     creation_time = "{BUILD_TIMESTAMP}",
     stamp = True,
 )
