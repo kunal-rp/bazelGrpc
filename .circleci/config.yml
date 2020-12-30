@@ -15,7 +15,6 @@ jobs:
       - run: ls /usr/bin/
       - bazelisk-orb/install
       - run: /home/circleci/.local/bin/bazel test //... 
-      - run: ci/check_service_config_services.sh
   push_images: 
     docker: 
       - image: circleci/openjdk:9.0.4-sid
