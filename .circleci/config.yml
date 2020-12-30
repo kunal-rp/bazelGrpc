@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   bazelisk-orb: promiseofcake/bazelisk-orb@0.3.0
+  aws-ecr: circleci/aws-ecr@6.15.2
 jobs:
   build-and-test:
     docker: 
@@ -25,15 +26,24 @@ jobs:
       - run: printenv
       - run: ls /usr/bin/
       - bazelisk-orb/install
-      - run: ci/modified_services.sh
+      - run: ci/modified_services.sh    
+  authenticate:
+    docker:
+      - image: circle/openjdk:9.0.4-sid
+    steps:
+      - aws-ecr/ecr-login
+
 workflows:
-  version: 2
+  version: 2.1
   build: # this is the name of our workflow
     jobs: # and here we list the jobs we are going to run.
       - build-and-test
-      - push_images:
+      - authenticate:
           requires:
             - build-and-test
+      - push_images:
+          requires:
+            - authenticate
           filters:
             branches: 
               only: main

@@ -7,7 +7,6 @@ cd "$(git rev-parse --show-toplevel)"
 files=()
 echo "STEP 1: Files -> SRC File Targets"
 for file in $(git diff --name-only ${COMMIT_RANGE} ); do
-   echo ${file}
    files+=($(bazel query --noshow_progress $file))
 done
 
@@ -17,10 +16,9 @@ for file in ${files[*]}; do
    modified_push_targets+=($(bazel query --noshow_progress "kind(".*push.*", rdeps(//..., set(${file})))"))
 done
 
-
-
 echo "STEP 3: Running Push Targets"
 for target in ${modified_push_targets[*]}; do
-   #$(bazel run ${target})
+   $(SERVICE_TARGET=${target} bazel run //ci:alter_service_config)
+   $(bazel run ${target})
    echo "DONE: ${target}" 
 done

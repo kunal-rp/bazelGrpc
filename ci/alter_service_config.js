@@ -11,16 +11,21 @@ const TAG_ATTR = "TAG"
 const TAG_REPO = "REPO"
 const serviceRegExp = new RegExp("push_[a-z]*_image")
 
-const SERVICE_NAME = process.env.SERVICE.match(serviceRegExp)[0].split("_")[1].toUpperCase()
+var SERVICE_NAME;
 
-if(!SERVICES.includes(process.env.SERVICE.toUpperCase())){
-    throw new Error("invalid service:"+process.env.SER)
+try{
+  SERVICE_NAME = process.env.SERVICE_TARGET.match(serviceRegExp)[0].split("_")[1].toUpperCase()
+} catch(e){
+  throw new Error("Couldn't parse service target env: "+ process.env.SERVICE_TARGET)
+}
+if(!SERVICES.includes(SERVICE_NAME)){
+    throw new Error("invalid service:"+SERVICE_NAME)
 }
 
 var updateServiceConfig = () =>{
 
     var updateFileContent = (cont) => {
-        var tagLineRegexp = new RegExp(process.env.SERVICE.toUpperCase()+"_TAG=[0-9]*\.[0-9]*")
+        var tagLineRegexp = new RegExp(SERVICE_NAME+"_TAG=[0-9]*\.[0-9]*")
         var currentTag = cont.match(tagLineRegexp)[0]
         var newTagVersion = (parseFloat(currentTag.split('=')[1]) + TAG_DELIM).toFixed(1)
         var newTagLine = currentTag.split('=')[0] + "=" + newTagVersion
