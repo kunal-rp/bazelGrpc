@@ -5,18 +5,18 @@ cd "$(git rev-parse --show-toplevel)"
 files=()
 echo "STEP 1: Files -> SRC File Targets"
 for file in $(git diff --name-only HEAD HEAD~1 ); do
-   files+=($(bazel query --noshow_progress $file))
+   files+=($(/home/circleci/.local/bin/bazel query --noshow_progress $file))
 done
 
 modified_push_targets=()
 echo "STEP 2: Retrieve Push Targets"
 for file in ${files[*]}; do
-   modified_push_targets+=($(bazel query --noshow_progress "kind(".*push.*", rdeps(//..., set(${file})))"))
+   modified_push_targets+=($(/home/circleci/.local/bin/bazel query --noshow_progress "kind(".*push.*", rdeps(//..., set(${file})))"))
 done
 
 echo "STEP 3: Running Push Targets"
 for target in ${modified_push_targets[*]}; do
-   $(bazel run ${target})
+   $(/home/circleci/.local/bin/bazel run ${target})
    echo "DONE: ${target}" 
 done
 
