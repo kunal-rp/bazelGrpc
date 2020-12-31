@@ -1,4 +1,4 @@
-ECR_URL="534378753229.dkr.ecr.us-east-2.amazonaws.com/action-bazeldemo"
+ECR_URL="534378753229.dkr.ecr.us-east-2.amazonaws.com"
 
 ACTION_REPO="action-bazeldemo"
 
