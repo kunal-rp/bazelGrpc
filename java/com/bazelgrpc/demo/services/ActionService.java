@@ -17,7 +17,7 @@ public class ActionService {
         Server pollServer = ServerBuilder.forPort(SetupUtil.DEFAULT_SERVICE_PORT)
                 .addService(injector.getInstance(ActionManagementImpl.class)).build();
         pollServer.start();
-        System.out.println("BGRPC Action Server Started!");
+        System.out.println("BGRPC Action Server Started!!");
         pollServer.awaitTermination();
     }
 }
