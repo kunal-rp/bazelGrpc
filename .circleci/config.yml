@@ -15,7 +15,7 @@ jobs:
       - run: /home/circleci/.local/bin/bazel test //... 
   push_images: 
     machine: 
-      - image: ubuntu-1604:202007-01
+      image: ubuntu-1604:202007-01
     resource_class: xlarge
     steps: 
       - checkout
