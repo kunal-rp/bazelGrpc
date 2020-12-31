@@ -41,9 +41,9 @@ workflows:
       - authenticate:
           requires:
             - build-and-test
-      - push_images:
-          requires:
-            - authenticate
           filters:
             branches: 
               only: main
+      - push_images:
+          requires:
+            - authenticate

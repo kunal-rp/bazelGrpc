@@ -1,7 +1,7 @@
 load("@rules_java//java:defs.bzl","java_binary")
 load("@io_bazel_rules_docker//container:container.bzl", "container_image","container_push")
 load("@io_bazel_rules_docker//java:image.bzl", "java_image")
-load("//ci:service_configs.bzl", "ACTION_TAG","ACTION_REPO", "POLL_TAG", "POLL_REPO", "ECR_URL")
+load("//ci:service_configs.bzl","ACTION_REPO", "POLL_REPO", "ECR_URL")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -49,7 +49,7 @@ container_push(
    format = "Docker",
    registry = ECR_URL,
    repository = ACTION_REPO,
-   tag = ACTION_TAG
+   tag = "dev"
 )
 
 
@@ -82,5 +82,5 @@ container_push(
    format = "Docker",
    registry = ECR_URL,
    repository = POLL_REPO,
-   tag = POLL_TAG
+   tag = "dev"
 )
