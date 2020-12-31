@@ -26,6 +26,7 @@ jobs:
       - run: printenv
       - run: ls /usr/bin/
       - bazelisk-orb/install
+      - run: sudo echo "PATH=/home/circleci/.local/bin/bazel:$PATH" >> ~/.profile
       - run: ci/push_modified_services.sh    
   authenticate:
     machine:
