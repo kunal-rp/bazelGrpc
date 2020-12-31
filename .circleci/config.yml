@@ -21,29 +21,22 @@ jobs:
     resource_class: xlarge
     steps: 
       - checkout
+      - aws-ecr/ecr-login
       - run: sudo apt-get update 
       - run: sudo apt-get install gcc g++ python3
       - run: printenv
       - run: ls /usr/bin/
       - bazelisk-orb/install
       - run: ci/push_modified_services.sh    
-  authenticate:
-    machine:
-      image: ubuntu-1604:202007-01
-    steps:
-      - aws-ecr/ecr-login
 
 workflows:
   version: 2.1
   build: # this is the name of our workflow
     jobs: # and here we list the jobs we are going to run.
       - build-and-test
-      - authenticate:
+      - push_images:
           requires:
             - build-and-test
           filters:
             branches: 
               only: main
-      - push_images:
-          requires:
-            - authenticate
