@@ -16,7 +16,7 @@ public class PollUtil {
 
         public static Poll createTestingPoll() {
                 return Poll.newBuilder().setPollId(1001).addQuestions(PollQuestion.newBuilder()
-                                .setPromptText("This is the first question, ok? ")
+                                .setPromptText("This is the first question, ok??? ")
                                 .setRadio(RadioSelection.newBuilder().addOptions(YES_RADIO_OPTION)
                                                 .addOptions(NO_RADIO_OPTION).build())
                                 .build()).build();

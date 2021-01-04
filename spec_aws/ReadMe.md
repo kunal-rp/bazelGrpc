@@ -17,4 +17,24 @@ Here are the general steps for creating/setup for k8s cluster:
 Running specific pods on specific nodes:
 So we are running
 
-Ingress and ALB(https://aws.amazon.com/premiumsupport/knowledge-center/eks-alb-ingress-controller-setup)
+--
+Pushing new images for CI/CD
+
+Developer would create a new branch & make a change, ci hookup will run tests and ensure that everything passes and works. On merge to main branch, images should get integrated into cluster.
+
+There are two general optinos for this : 
+1) Find what images are new , push to registry
+- follow up change to update the deployment yaml
+2) Directly update deployment upon change
+- use k8s rules defined, specifying the cluster and image target 
+- no need to push to registry
+- rollback would = rollback of change, which would be easy to keep track of and perform 
+
+Option #1 has a ci folder w/ scripts that can be used for this, along w/ .circle ci yaml  
+Option #2 has a ci folder that k8s build rules in spec_aws + kubeconfig to allow for testing
+
+Performing Option #2: 
+- create vpc and cluster w/ eks 
+- ensure that everything is working, test the api
+- make change to api/service
+- bazel run //spec_aws:k8s.apply
